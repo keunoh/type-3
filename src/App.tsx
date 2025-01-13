@@ -1,10 +1,10 @@
 
-import './App.css';
+import { faker } from "@faker-js/faker";
 import axios from 'axios';
 import AxiosMockAdapter from "axios-mock-adapter";
-import { faker } from "@faker-js/faker";
-import { Card, Col, Row, Button } from "antd";
 import { useState } from 'react';
+import './App.css';
+import Parent from './Parent';
 
 const mock = new AxiosMockAdapter(axios);
 
@@ -42,24 +42,7 @@ const App = () => {
 
   return (
     <>
-      <Button onClick={onClick} style={{ margin: "2rem" }}>
-        버튼
-      </Button>
-      <Row>
-        {posts?.map((post) => (
-          <Col key={post.id}>
-            <Card
-              title={post.title}
-              style={{
-                margin: "2rem",
-                width: "20rem"
-              }}
-            >
-              <p>{post.content}</p>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <Parent />
     </>
   );
 }
