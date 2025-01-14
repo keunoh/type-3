@@ -1,48 +1,93 @@
 
-import { faker } from "@faker-js/faker";
-import axios from 'axios';
-import AxiosMockAdapter from "axios-mock-adapter";
-import { useState } from 'react';
-import './App.css';
-import Parent from './Parent';
-
-const mock = new AxiosMockAdapter(axios);
-
-const posts = [...Array(24)].map((_, index) => {
-  const setIndex = index + 1;
-  return {
-    id: `postId-${setIndex}`,
-    title: faker.lorem.words(),
-    content: faker.lorem.lines(2),
-  }
-});
-
-mock.onGet("/posts").reply(() => {
-  try {
-    const results = posts;
-    return [200, results];
-  } catch (error) {
-    console.error(error);
-    return [500, { meesage: "Internal sever error" }];
-  }
-});
-
+import './Form.css';
 
 const App = () => {
-  const [posts, setPosts] = useState<myType[]>([]);
 
-  const onClick = async (e: any) => {
-    const mockData = await axios.get("/posts");
-    console.log(e);
+  let form = document.getElementById('form')
+  let textarea = document.getElementById('textarea') as HTMLFormElement;
+  let button = document.getElementById('button');
+  let loadingMessage = document.getElementById('loading');
+  let errorMessage = document.getElementById('error') as HTMLFormElement;
+  let successMessage = document.getElementById('success');
+  // form.onsubmit = handleFormSubmit;
+  // textarea.oninput = handleTextareaChange;
 
-    console.log(mockData);
+  async function handleFormSubmit(e: any) {
+    e.preventDefault();
+    disable(textarea);
+    disable(button);
+    show(loadingMessage);
+    hide(errorMessage);
+    try {
+      await submitForm(textarea.value);
+      show(successMessage);
+      hide(form);
+    } catch (err: any) {
+      show(errorMessage);
+      errorMessage.textContent = err.message;
+    } finally {
+      hide(loadingMessage);
+      enable(textarea);
+      enable(button);
+    }
+  }
 
-    setPosts(mockData.data);
-  };
+  function handleTextareaChange() {
+    if (textarea.value.length === 0) {
+      disable(button);
+    } else {
+      enable(button);
+    }
+  }
+
+  function hide(el: any) {
+    el.style.display = 'none';
+  }
+
+  function show(el: any) {
+    el.style.display = '';
+  }
+
+  function enable(el: any) {
+    el.disabled = false;
+  }
+
+  function disable(el: any) {
+    el.disabled = true;
+  }
+
+  function submitForm(answer: string) {
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        if (answer.toLowerCase() === 'istanbul') {
+          resolve();
+        } else {
+          reject(new Error('Good guess but a wrong answer. Try again!'))
+        }
+      }, 1500);
+    });
+  }
+
+
 
   return (
     <>
-      <Parent />
+      <form id="form"
+        onSubmit={(e) => handleFormSubmit(e)}
+      >
+        <h2>City quiz</h2>
+        <p>
+          What city is located on two continets?
+        </p>
+        <textarea id="textarea"
+          onInput={handleTextareaChange}
+        ></textarea>
+        <br />
+        <button id="button" disabled>Submit</button>
+        <p id="loading" style={{ display: 'none' }}>Loading...</p>
+        <p id="error" style={{ display: 'none', color: 'red' }} ></p>
+      </form>
+      <h1 id="success" style={{ display: 'none' }}>That's right</h1>
     </>
   );
 }
