@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import StoryBook from './StoryBook';
 import { Memo } from './Memo';
 import { Memo2 } from './Memo2';
+import { Callback } from './Callback';
+import { Callback2 } from './Callback2';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +17,9 @@ root.render(
     {/* <App /> */}
     {/* <StoryBook /> */}
     {/* <Memo /> */}
-    <Memo2 />
+    {/* <Memo2 /> */}
+    {/* <Callback /> */}
+    <Callback2 />
   </React.StrictMode>
 );
 
