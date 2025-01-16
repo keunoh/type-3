@@ -4,14 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import StoryBook from './StoryBook';
+import { Memo } from './Memo';
+import { Memo2 } from './Memo2';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     {/* <StoryBook /> */}
+    {/* <Memo /> */}
+    <Memo2 />
   </React.StrictMode>
 );
 
