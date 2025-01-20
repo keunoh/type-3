@@ -8,6 +8,7 @@ import { Memo } from './Memo';
 import { Memo2 } from './Memo2';
 import { Callback } from './Callback';
 import { Callback2 } from './Callback2';
+import { MySwiper } from './MySwiper';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,7 +20,8 @@ root.render(
     {/* <Memo /> */}
     {/* <Memo2 /> */}
     {/* <Callback /> */}
-    <Callback2 />
+    {/* <Callback2 /> */}
+    <MySwiper />
   </React.StrictMode>
 );
 
