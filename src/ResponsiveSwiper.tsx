@@ -24,8 +24,7 @@ const ResponsiveSwiper: React.FC = () => {
     }
 
     return () => {
-      // 아마도 다른 화면으로 렌더링 할때를 대비해
-      // 디스트로이 해주는 것이었던 듯
+      // 컴포넌트 언마운트 시 Swiper 인스턴스 정리
       swiperRef.current?.destroy();
     }
   }, [isMobile]);
