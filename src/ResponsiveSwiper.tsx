@@ -11,8 +11,9 @@ const ResponsiveSwiper: React.FC = () => {
     if (isMobile) {
       // 모바일 환경: Swiper 초기화
       swiperRef.current = new Swiper(".swiper-container", {
-        navigation: true,
-        pagination: { clickable: true },
+        loop: true,
+        slidesPerView: "auto",
+        spaceBetween: 20,
       });
     } else {
       // 데스크탑 환경: Swiper 제거
@@ -21,15 +22,33 @@ const ResponsiveSwiper: React.FC = () => {
         swiperRef.current = null;
       }
     }
+
+    return () => {
+      // 아마도 다른 화면으로 렌더링 할때를 대비해
+      // 디스트로이 해주는 것이었던 듯
+      swiperRef.current?.destroy();
+    }
   }, [isMobile]);
 
+  /**
+   * Swiper를 수동으로 생성해줘야 할지도 모름
+   */
   return (
     <div>
       <div className="swiper-container">
         <div className="swiper-wrapper">
-          <div className="swiper-slide">Slide 1</div>
-          <div className="swiper-slide">Slide 2</div>
-          <div className="swiper-slide">Slide 3</div>
+          <dl className="swiper-slide">
+            <td>Slide DL1</td>
+            <dd>DDD</dd>
+          </dl>
+          <dl className="swiper-slide">
+            <td>Slide DL2</td>
+            <dd>DDD</dd>
+          </dl>
+          <dl className="swiper-slide">
+            <td>Slide DL3</td>
+            <dd>DDD</dd>
+          </dl>
         </div>
       </div>
     </div>
