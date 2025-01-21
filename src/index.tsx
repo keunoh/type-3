@@ -10,6 +10,7 @@ import { Callback } from './Callback';
 import { Callback2 } from './Callback2';
 import { MySwiper } from './MySwiper';
 import ResponsiveSwiper from './ResponsiveSwiper';
+import { Console } from './Console';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,7 +25,8 @@ root.render(
     {/* <Callback2 /> */}
     {/* <MySwiper /> */}
     {/* <DomHandling /> */}
-    <ResponsiveSwiper />
+    {/* <ResponsiveSwiper /> */}
+    <Console />
   </React.StrictMode>
 );
 
