@@ -11,6 +11,7 @@ import { Callback2 } from './Callback2';
 import { MySwiper } from './MySwiper';
 import ResponsiveSwiper from './ResponsiveSwiper';
 import { Console } from './Console';
+import TripleSwiperComponent from './TripleSwiper';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,7 +27,8 @@ root.render(
     {/* <MySwiper /> */}
     {/* <DomHandling /> */}
     {/* <ResponsiveSwiper /> */}
-    <Console />
+    {/* <Console /> */}
+    <TripleSwiperComponent />
   </React.StrictMode>
 );
 
