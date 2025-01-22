@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Swiper from "swiper";
 import "swiper/css";
+import "./test.css"
 
 const images = [
-  "https://via.placeholder.com/600x300?text=Image+1",
-  "https://via.placeholder.com/600x300?text=Image+2",
-  "https://via.placeholder.com/600x300?text=Image+3",
-  "https://via.placeholder.com/600x300?text=Image+4",
-  "https://via.placeholder.com/600x300?text=Image+5",
+  "https://picsum.photos/600/300?random=1",
+  "https://picsum.photos/600/300?random=2",
+  "https://picsum.photos/600/300?random=3",
+  "https://picsum.photos/600/300?random=4",
+  "https://picsum.photos/600/300?random=5",
 ];
+
 
 const TripleSwiperComponent: React.FC = () => {
   const [mainSwiper, setMainSwiper] = useState<Swiper | null>(null);
@@ -27,6 +29,8 @@ const TripleSwiperComponent: React.FC = () => {
           init: () => {
             // mainSwiper가 초기화된 후에만 동기화
             if (prevSwiper && nextSwiper) {
+              console.log("여기에들어");
+
               main.controller.control = [prevSwiper, nextSwiper];
             }
           },
