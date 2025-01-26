@@ -1,19 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import StoryBook from './StoryBook';
-import { Memo } from './Memo';
-import { Memo2 } from './Memo2';
-import { Callback } from './Callback';
-import { Callback2 } from './Callback2';
-import { MySwiper } from './MySwiper';
-import ResponsiveSwiper from './ResponsiveSwiper';
-import { Console } from './Console';
-import TripleSwiperComponent from './TripleSwiper';
-import { MySuspense } from './hook/MySuspense';
-import Counter from './hook/MyReducer';
+import './index.css';
+import reportWebVitals from './testing/reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
