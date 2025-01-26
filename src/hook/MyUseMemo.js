@@ -2,7 +2,7 @@
 import { theme } from "antd";
 import { useMemo } from "react";
 import { filterTodos } from "./utils";
-import List from "../List";
+import List from "../testing/List";
 
 // to cache a calculation between re-renders:
 export default function TodoList({ todos, tab, theme }) {

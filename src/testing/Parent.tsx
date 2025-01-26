@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import FirstChild from "./FirstChild";
-import SecondChild from "../SecondChild";
+import SecondChild from "./SecondChild";
 
 export const ResultContext = createContext(undefined);
 
