@@ -13,6 +13,7 @@ import ResponsiveSwiper from './ResponsiveSwiper';
 import { Console } from './Console';
 import TripleSwiperComponent from './TripleSwiper';
 import { MySuspense } from './hook/MySuspense';
+import Counter from './hook/MyReducer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,7 +32,8 @@ root.render(
     {/* <Console /> */}
     {/* <TripleSwiperComponent /> */}
     {/* <MyPromise /> */}
-    <MySuspense />
+    {/* <MySuspense /> */}
+    <Counter />
   </React.StrictMode>
 );
 
