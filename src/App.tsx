@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getTodos, postTodo } from "./tanstack/my-api";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 
 const queryClient = new QueryClient();
@@ -9,7 +10,9 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Todos />
+      {/* <Todos /> */}
+      <ReactQueryDevtools />
+      <Example />
     </QueryClientProvider>
   )
 }
@@ -47,6 +50,32 @@ function Todos() {
       >
         Add Todo
       </button>
+    </div>
+  )
+}
+
+function Example() {
+  const { isPending, error, data, isFetching } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: async () => {
+      const response = await fetch(
+        'https://api.github.com/repos/TanStack/query',
+      )
+      return await response.json()
+    }
+  })
+
+  if (isPending) return 'Loading...'
+  if (error) return 'An error has occurre: ' + error.message
+
+  return (
+    <div>
+      <h1>{data.full_name}</h1>
+      <p>{data.description}</p>
+      <strong>👀 {data.subscribers_count}</strong>{' '}
+      <strong>✨ {data.stargazers_count}</strong>{' '}
+      <strong>🍴 {data.forks_count}</strong>
+      <div>{isFetching ? 'Updating...' : ''}</div>
     </div>
   )
 }
