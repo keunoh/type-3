@@ -20,7 +20,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <StoryBook /> */}
     {/* <Memo /> */}
     {/* <Memo2 /> */}
@@ -33,7 +33,7 @@ root.render(
     {/* <TripleSwiperComponent /> */}
     {/* <MyPromise /> */}
     {/* <MySuspense /> */}
-    <Counter />
+    {/* <Counter /> */}
   </React.StrictMode>
 );
 
