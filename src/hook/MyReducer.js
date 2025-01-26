@@ -2,26 +2,54 @@ import { useReducer } from "react";
 
 
 function reducer(state, action) {
-  if (action.type === 'incremented_age') {
-    return {
-      age: state.age + 1
-    };
-  }
+  switch (action.type) {
 
-  throw Error('Unknwon action.');
+    case 'incremented_age': {
+      console.log("increment!");
+      return {
+        name: state.name,
+        // 🚩 Don't mutate an object in state like this:
+        // ✅ Instead, return a new object
+        age: state.age + 1
+      };
+    }
+    case 'changed_name': {
+      console.log("change!");
+      return {
+        name: action.nextName,
+        age: state.age
+      }
+    }
+  }
+  throw Error('Unknwon action:' + action.type);
 }
 
+const initialState = { name: 'Taylor', age: 42 };
+
 export default function Counter() {
-  const [state, dispatch] = useReducer(reducer, { age: 42 });
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  function handleButtonClick() {
+    dispatch({ type: 'incremented_age' })
+  }
+
+  function handleInputChange(e) {
+    dispatch({
+      type: 'changed_name',
+      nextName: e.target.value
+    })
+  }
 
   return (
     <>
-      <button onClick={() => {
-        dispatch({ type: 'incremented_age' })
-      }}>
+      <input
+        value={state.name}
+        onChange={handleInputChange}
+      />
+      <button onClick={handleButtonClick}>
         Increment age
       </button>
-      <p>Hello! You are {state.age}.</p>
+      <p>Hello!, {state.name}. You are {state.age}.</p>
     </>
   )
 }
