@@ -1,11 +1,11 @@
 export async function fetchProjects(): Promise<
   Array<{ name: string; full_name: string }>> {
-  console.info("Fetchin projects")
+  console.info("Fetching projects")
 
   const response = await fetch(
     `https://api.github.com/users/TanStack/repos?sort=updated`,
   )
-  await new Promise((r) => setTimeout(r, 1000))
+  await new Promise((r) => setTimeout(r, 3000))
   return await response.json()
 }
 

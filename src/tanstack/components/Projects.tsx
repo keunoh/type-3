@@ -4,7 +4,7 @@ import { fetchProject, fetchProjects } from "../queries";
 import Spinner from "./Spinner";
 import Button from "./Button";
 
-export default function Porjects({
+export default function Projects({
   setActiveProject
 }: {
   setActiveProject: React.Dispatch<React.SetStateAction<string | null>>

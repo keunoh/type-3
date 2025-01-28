@@ -21,5 +21,5 @@ export const MySuspense = () => {
 }
 
 function Loading() {
-  return <h2>now is Loading...</h2>
+  return <h2 style={{backgroundColor: "black"}}>now is Loading...</h2>
 }

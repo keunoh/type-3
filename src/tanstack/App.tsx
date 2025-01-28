@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider, QueryErrorResetBoundary, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import Button from "./components/Button";
 import { fetchProjects } from "./queries";
-import Project from "./components/Project";
-import Porjects from "./components/Projects";
 import { ErrorBoundary } from "react-error-boundary";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const Projects = lazy(() => import('./components/Projects'))
+const Project = lazy(() => import('./components/Project'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,7 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <Example />
     </QueryClientProvider>
   )
 }
@@ -59,17 +61,17 @@ function Example() {
             )}
             onReset={reset}
           >
-            <React.Suspense fallback={<h1>Loading projects...!!</h1>}
-              {...showProjects ? (
+            <React.Suspense fallback={<div style={{backgroundColor:'beige', height: '2000px'}}></div>}>
+              {showProjects ? (
                 activeProject ? (
                   <Project
                     activeProject={activeProject}
                     setActiveProject={setActiveProject}
                   />
                 ) : (
-                  <Porjects setActiveProject={setActiveProject} />
+                  <Projects setActiveProject={setActiveProject} />
                 )
-              ) : null}>
+              ) : null}
 
             </React.Suspense>
           </ErrorBoundary>
